@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBill - Billing Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Welcome Page -->
+    <section id="welcomePage" class="page active">
+        <div class="welcome-container">
+            <div class="brand-icon">SB</div>
+            <h1>SmartBill</h1>
+            <p>Billing Management System</p>
+            <p class="welcome-text">
+                Simple, fast and professional billing management for your business.
+            </p>
+            <button class="primary-btn" id="getStartedBtn">
+                Get Started →
+            </button>
+        </div>
+    </section>
+
+    <!-- Login Page -->
+    <section id="loginPage" class="page">
+        <div class="login-container">
+            <div class="login-box">
+                <div class="brand-small">SB</div>
+                <h2>Welcome Back</h2>
+                <p>Login to SmartBill</p>
+
+                <form id="loginForm">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username">
+
+                    <label for="password">Password</label>
+
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Enter password">
+                        <button type="button" id="togglePassword">Show</button>
+                    </div>
+
+                    <div id="loginError" class="error-message"></div>
+
+                    <button type="submit" class="primary-btn full-btn">
+                        Login
+                    </button>
+                </form>
+
+                <div class="demo-box">
+                    <strong>Demo Login</strong>
+                    <br>
+                    Username: <b>admin</b>
+                    <br>
+                    Password: <b>1234</b>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboardPage" class="page app-page">
+
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="brand-small">SB</div>
+                <span>SmartBill</span>
+            </div>
+
+            <nav>
+                <button class="nav-btn active" data-page="dashboard">
+                    Dashboard
+                </button>
+
+                <button class="nav-btn" data-page="billing">
+                    New Bill
+                </button>
+
+                <button class="nav-btn" data-page="bills">
+                    View Bills
+                </button>
+            </nav>
+
+            <button class="logout-btn" id="logoutBtn">
+                Logout
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Welcome to SmartBill</p>
+                </div>
+                <div class="user-badge">Admin</div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span>Total Sales</span>
+                    <h3 id="totalSales">₹0.00</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Total Bills</span>
+                    <h3 id="totalBills">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Total Customers</span>
+                    <h3 id="totalCustomers">0</h3>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3>Quick Actions</h3>
+
+                <div class="quick-actions">
+                    <button class="action-card" id="newBillBtn">
+                        <span>＋</span>
+                        <strong>Create New Bill</strong>
+                        <small>Create a new customer invoice</small>
+                    </button>
+
+                    <button class="action-card" id="viewBillsBtn">
+                        <span>▤</span>
+                        <strong>View Bills</strong>
+                        <small>View generated bills</small>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Billing Page -->
+    <section id="billingPage" class="page app-page">
+
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="brand-small">SB</div>
+                <span>SmartBill</span>
+            </div>
+
+            <nav>
+                <button class="nav-btn" data-page="dashboard">
+                    Dashboard
+                </button>
+
+                <button class="nav-btn active" data-page="billing">
+                    New Bill
+                </button>
+
+                <button class="nav-btn" data-page="bills">
+                    View Bills
+                </button>
+            </nav>
+
+            <button class="logout-btn logout-common">
+                Logout
+            </button>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="top-header">
+                <div>
+                    <h2>Create New Bill</h2>
+                    <p>Prepare customer invoice</p>
+                </div>
+            </header>
+
+            <div id="billingMessage" class="message"></div>
+
+            <div class="section-card">
+
+                <div class="invoice-info">
+
+                    <div>
+                        <label>Invoice Number</label>
+                        <input type="text" id="invoiceNumber" readonly>
+                    </div>
+
+                    <div>
+                        <label>Date</label>
+                        <input type="date" id="invoiceDate">
+                    </div>
+
+                    <div>
+                        <label>Customer Name *</label>
+                        <input type="text" id="customerName" placeholder="Customer name">
+                    </div>
+
+                    <div>
+                        <label>Mobile Number</label>
+                        <input type="tel" id="customerMobile" placeholder="Mobile number">
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <h3>Add Product</h3>
+
+                <div class="product-form">
+
+                    <div>
+                        <label>Product Name *</label>
+                        <input type="text" id="productName" placeholder="Product name">
+                    </div>
+
+                    <div>
+                        <label>Quantity *</label>
+                        <input type="number" id="quantity" min="1" value="1">
+                    </div>
+
+                    <div>
+                        <label>Rate *</label>
+                        <input type="number" id="rate" min="0" step="0.01" placeholder="0.00">
+                    </div>
+
+                    <div>
+                        <label>Discount %</label>
+                        <input type="number" id="discount" min="0" max="100" value="0">
+                    </div>
+
+                    <div>
+                        <label>GST %</label>
+                        <input type="number" id="gst" min="0" max="100" value="18">
+                    </div>
+
+                    <button class="primary-btn add-btn" id="addItemBtn">
+                        + Add Item
+                    </button>
+
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Rate</th>
+                                <th>Discount</th>
+                                <th>GST</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="itemsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="billing-bottom">
+
+                    <div class="note-box">
+                        <label>Notes</label>
+                        <textarea id="billNotes" placeholder="Additional notes..."></textarea>
+                    </div>
+
+                    <div class="totals-box">
+
+                        <div>
+                            <span>Subtotal</span>
+                            <strong id="subtotal">₹0.00</strong>
+                        </div>
+
+                        <div>
+                            <span>Discount</span>
+                            <strong id="discountTotal">₹0.00</strong>
+                        </div>
+
+                        <div>
+                            <span>GST</span>
+                            <strong id="gstTotal">₹0.00</strong>
+                        </div>
+
+                        <div class="grand-total">
+                            <span>Grand Total</span>
+                            <strong id="grandTotal">₹0.00</strong>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="secondary-btn" id="cancelBillBtn">
+                        Cancel
+                    </button>
+
+                    <button class="primary-btn" id="generateBillBtn">
+                        Generate Bill
+                    </button>
+                </div>
+
+            </div>
+        </main>
+    </section>
+
+    <!-- Bills Page -->
+    <section id="billsPage" class="page app-page">
+
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="brand-small">SB</div>
+                <span>SmartBill</span>
+            </div>
+
+            <nav>
+                <button class="nav-btn" data-page="dashboard">
+                    Dashboard
+                </button>
+
+                <button class="nav-btn" data-page="billing">
+                    New Bill
+                </button>
+
+                <button class="nav-btn active" data-page="bills">
+                    View Bills
+                </button>
+            </nav>
+
+            <button class="logout-btn logout-common">
+                Logout
+            </button>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="top-header">
+                <div>
+                    <h2>Generated Bills</h2>
+                    <p>View your billing history</p>
+                </div>
+            </header>
+
+            <div class="section-card">
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Mobile</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="billsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </main>
+    </section>
+
+    <!-- Complete Page -->
+    <section id="completePage" class="page">
+
+        <div class="complete-container">
+
+            <div class="success-icon">✓</div>
+
+            <h1>Bill Generated Successfully</h1>
+            <p>Your invoice has been created successfully.</p>
+
+            <div class="invoice-result">
+
+                <div>
+                    <span>Invoice Number</span>
+                    <strong id="completeInvoice"></strong>
+                </div>
+
+                <div>
+                    <span>Customer</span>
+                    <strong id="completeCustomer"></strong>
+                </div>
+
+                <div>
+                    <span>Grand Total</span>
+                    <strong id="completeTotal"></strong>
+                </div>
+
+            </div>
+
+            <div class="complete-actions">
+
+                <button class="primary-btn" id="printBillBtn">
+                    Print Bill
+                </button>
+
+                <button class="secondary-btn" id="completeNewBillBtn">
+                    New Bill
+                </button>
+
+                <button class="secondary-btn" id="completeDashboardBtn">
+                    Dashboard
+                </button>
+
+                <button class="logout-simple" id="completeLogoutBtn">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Printable Invoice -->
+        <div id="printInvoice" class="print-invoice">
+
+            <h1>SmartBill</h1>
+            <p>Billing Management System</p>
+
+            <hr>
+
+            <div class="print-info">
+                <p><strong>Invoice:</strong> <span id="printInvoiceNumber"></span></p>
+                <p><strong>Date:</strong> <span id="printDate"></span></p>
+                <p><strong>Customer:</strong> <span id="printCustomer"></span></p>
+                <p><strong>Mobile:</strong> <span id="printMobile"></span></p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody id="printItems"></tbody>
+            </table>
+
+            <div class="print-total">
+                <strong>Grand Total: <span id="printTotal"></span></strong>
+            </div>
+
+            <p>Thank you for your business!</p>
+
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
